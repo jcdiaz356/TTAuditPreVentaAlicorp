@@ -1,0 +1,14 @@
+INSERT INTO departament (id, name) VALUES (6, 'Cajamarca');
+INSERT INTO departament (id, name) VALUES (12, 'Junín');
+INSERT INTO departament (id, name) VALUES (15, 'Lima');
+INSERT INTO district (departament_id, name) VALUES (6, 'Cajamarca');
+INSERT INTO district (departament_id, name) VALUES (12, 'Huancayo');
+INSERT INTO district (departament_id, name) VALUES (12, 'Jauja');
+INSERT INTO district (departament_id, name) VALUES (15, 'Lima');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (1,0,'Cajamarca','Business P y A');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (2,0,'Cajamarca','Negocios Brigitte');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (3,0,'Huancayo','Primaveral');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (4,0,'Jauja','D’E & Inversiones SAC');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (5,0,'Lima','Inversiones y Multiservicios Ricar');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (6,0,'Lima','Winfeh');
+INSERT INTO broker (id, district_id, district, fullname) VALUES (7,0,'Lima','Vergara');
