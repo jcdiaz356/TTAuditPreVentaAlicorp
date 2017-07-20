@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     // Logcat tag
     private static final int    REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-
     private ProgressBar         pbLoad;
     private TextView            tvLoad, tv_Version ;
     private Activity            activity;
@@ -67,11 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadLoginActivity() {
-
-
         new loadLogin().execute();
-
-
     }
 
     class loadLogin extends AsyncTask<Void, String, Boolean> {
@@ -95,14 +90,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO Auto-generated method stub
-
             publishProgress(activity.getString(R.string.text_download_init));
-
             StoreRepo storeRepo = new StoreRepo(activity);
             storeRepo.deleteAll();
-
             publishProgress(activity.getString(R.string.text_download_companies));
-
             CompanyRepo companyRepo = new CompanyRepo(activity);
             company = AuditUtil.getCompany(1,1,app_id);
             if(company.getId() == 0) {
@@ -120,10 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-
             if( company.getId() != 0 ) {
-
-
                 publishProgress(activity.getString(R.string.text_download_audits));
                 AuditRepo auditRepo= new AuditRepo(activity);
                 ArrayList<Audit> audits = (ArrayList<Audit>) auditRepo.findAll();
@@ -138,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                         return  false;
                     }
                 }
-
 
                 publishProgress(activity.getString(R.string.text_download_polls));
                 PollRepo pollRepo= new PollRepo(activity);
@@ -170,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-
                 publishProgress(activity.getString(R.string.text_download_products));
                 ProductRepo productRepo= new ProductRepo(activity);
                 ArrayList<Product> products = (ArrayList<Product>) productRepo.findAll();
@@ -194,13 +180,8 @@ public class MainActivity extends AppCompatActivity {
                         return  false;
                     }
 
-
                 }
-
             }
-
-
-
 
             publishProgress(activity.getString(R.string.text_download_terminate));
             return true;
@@ -210,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
          * **/
         protected void onPostExecute(Boolean result) {
             // dismiss the dialog once product deleted
-
             if(result == true) {
                 Intent intent = new Intent(activity, LoginActivity.class);
                 startActivity(intent);
@@ -224,13 +204,9 @@ public class MainActivity extends AppCompatActivity {
                     message = message.concat("\n");
                     //Toast.makeText(activity, R.string.message_no_get_company, Toast.LENGTH_LONG).show();
                     //activity.finish();
-
                     //-------------------------------------------
                     //Creandd Publicity de prueba
                     //-------------------------------------------
-
-
-
 
                 }
                 if (audits == null) {

@@ -180,6 +180,7 @@
     <string name="text_unidades">Unidad</string>
     <string name="text_product_competity">Productos Competencia</string>
     <string name="text_product_alicorp">Productos Alicorp</string>
+    <string name="message_requiere_precio">Ingresar un valor</string>
 
 
 </resources>

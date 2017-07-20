@@ -79,7 +79,7 @@ public class PollActivity extends AppCompatActivity {
     private int                     category_product_id;
     private int                     publicity_id;
     private int                     product_id;
-    private AuditRoadStoreRepo      auditRoadStoreRepo ;
+    //private AuditRoadStoreRepo      auditRoadStoreRepo ;
     private StoreRepo               storeRepo ;
     private CompanyRepo             companyRepo ;
     private PollRepo                pollRepo ;
@@ -162,7 +162,7 @@ public class PollActivity extends AppCompatActivity {
 
         storeRepo           = new StoreRepo(activity);
         companyRepo         = new CompanyRepo(activity);
-        auditRoadStoreRepo  = new AuditRoadStoreRepo(activity);
+        //auditRoadStoreRepo  = new AuditRoadStoreRepo(activity);
         pollRepo            = new PollRepo(activity);
         pollOptionRepo      = new PollOptionRepo((activity));
         routeStoreTimeRepo  = new RouteStoreTimeRepo(activity);
@@ -285,6 +285,11 @@ public class PollActivity extends AppCompatActivity {
                         }
                         comment = etComent.getText().toString();
                         commentOptions = etCommentOption.getText().toString();
+
+                        if(requiereComment(poll.getOrder(),comment)== false) {
+                            Toast.makeText(activity , R.string.message_requiere_precio , Toast.LENGTH_LONG).show();
+                            return ;
+                        }
 
                         new savePoll().execute();
                         dialog.dismiss();
@@ -413,9 +418,15 @@ public class PollActivity extends AppCompatActivity {
                 pollDetail.setProduct_id(0);
                 if (!AuditUtil.insertPollDetail(pollDetail)) return false;
                 break;
-            case 4: case 5:
+            case 4:
                 product  = (Product) productRepo.findById(product_id);
                 pollDetail.setProduct_id(product.getProduct_id());
+                if (!AuditUtil.insertPollDetail(pollDetail)) return false;
+                break;
+            case 5:
+                product  = (Product) productRepo.findById(product_id);
+                pollDetail.setProduct_id(product.getProduct_id());
+
                 if (!AuditUtil.insertPollDetail(pollDetail)) return false;
                 break;
             case 8:
@@ -645,6 +656,22 @@ public class PollActivity extends AppCompatActivity {
             radioButtonArray = null;
         }
 
+    }
+
+    private boolean requiereComment (int orderPoll,String comment) {
+
+        boolean resul = true;
+        switch (orderPoll) {
+
+
+            case 5:
+               if(comment.trim().equals("")){
+                   resul = false;
+               }
+                break;
+
+        }
+        return  resul;
     }
 
     @Override
